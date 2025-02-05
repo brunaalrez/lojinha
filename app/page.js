@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 export default function Home() {
-  let [carrinho, setCarrinho] = useState(0);
-  let [cupom, setCumpon] = useState(25);
-  let [valortotal, setTotal] = useState(0);
+  const [carrinho, setCarrinho] = useState(0);
+  const [cupom, setCumpon] = useState(25);
+  const [valortotal, setTotal] = useState(0);
   function handleCarrinho(adicionar){
     let novoCarrinho = carrinho;
     if(adicionar ==true){
@@ -26,7 +26,7 @@ export default function Home() {
   }
   function cumponCarrinho(){
     setCumpon(cupom - (cupom * 0,1));
-    setTotal(valortotal - (cupom - (cupom * 0,1)))
+
   }
   return (
     <div>
