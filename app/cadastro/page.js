@@ -2,23 +2,45 @@
 import { useState } from "react";
 
 function Cadastro() {
-    const[nome, alteraNome] = useState("");
+    // const[nome, alteraNome] = useState("");
     const[erroNome, alteraErroNome] = useState(false);
 
-    const[senha, alteraSenha] = useState("");
-    const[confirma, alteraConfima] = useState("");
+    const [usuario, alteraUsuario] = useState({
+        nome: "",
+        senha:""
+    });
+
+    function alteraNome(pnome){
+        const u ={
+            nome: pnome,
+            senha: usuario.senha
+        }
+        alteraUsuario(u);
+    }
+
+    function alteraSenha(psenha){
+        const u ={
+            nome: usuario.nome,
+            senha:psenha
+        }
+        alteraUsuario(u);
+    }
+
+    // const[senha, alteraSenha] = useState("");
+    // const[confirma, alteraConfima] = useState("");
     const[erroSenha, alteraErroSenha] = useState(false);
 
     function salvar(){
-        console.log("O nome cadastrado é:" + nome);
+        console.log("O nome cadastrado é:" + usuario.nome);
+        alteraNome(usuario.nome.toUpperCase())
 
-        if(nome.length < 5){
+        if(usuario.nome.length < 5){
             alteraErroNome(true);
         }else{
             alteraErroNome(false);
         }
 
-        if(senha != confirma){
+        if(usuario.senha != usuario.confirma){
             alteraErroSenha(true)
         }else{
             alteraErroSenha(false)
@@ -30,7 +52,7 @@ function Cadastro() {
             <h1 className="text-lg">Cadastro</h1>
             <hr/>
             <p>Digite seu nome:</p>
-            <input onChange={(e)=>alteraNome(e.target.value)} value={nome} className="outline"/>
+            <input onChange={(e)=>alteraNome(e.target.value)} value={usuario.nome} className="outline"/>
             <br/>
 
             {
@@ -41,9 +63,9 @@ function Cadastro() {
             }
 
             <p>Digite sua senha:</p>
-            <input onChange={(e)=>alteraSenha(e.target.value)} value={senha} className="outline"/>
+            <input onChange={(e)=>alteraSenha(e.target.value)} value={usuario.senha} className="outline"/>
             <p>Confirme sua senha</p>
-            <input onChange={(e)=>alteraConfima(e.target.value)} value={confirma} className="outline"/>
+            <input onChange={(e)=>alteraConfima(e.target.value)} value={usuario.confirma} className="outline"/>
             <br/>
             {
                 erroSenha == true &&
