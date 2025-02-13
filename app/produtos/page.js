@@ -2,7 +2,17 @@
 import { useState } from "react";
 
 function Produtos() {
-    const [produto, alteraProduto] = useState({});
+    // const [produto, alteraProduto] = useState({});
+    const [produto, alteraProduto] = useState([{
+        nome: "Havainas",
+        preco: "29,90",
+        quantidade: 60
+    },
+    {
+        nome: "Sapatênis",
+        preco: "125,50",
+        quantidade: 11
+    }]);
 
     const [nome, alteraNome] = useState("");
     const [preco, alteraPreco] = useState("");
@@ -31,7 +41,7 @@ function Produtos() {
             quantidade: quantidade
         }
 
-        alteraProduto(objeto);
+        alteraProduto([...produto, objeto]);
     }
     return ( 
         <div className="p-10">
@@ -84,9 +94,8 @@ function Produtos() {
                         <div className="border p-5">
                         <h2 className="font-bold mb-5">Listagem de produtos</h2>
                         <ul>
-                            <li>Produto 1</li>
-                            <li>Produto 2</li>
-                            <li>Produto 3</li>
+                            {produto.map((i)=> <li>{i.nome} - R$ {i.preco} - {i.quantidade} itens</li>)}
+                            
                         </ul>
                         </div>
                     }

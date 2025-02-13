@@ -5,6 +5,10 @@ export default function Home() {
   const [carrinho, setCarrinho] = useState(0);
   const [cupom, setCumpon] = useState(25);
   const [valortotal, setTotal] = useState(0);
+
+  const [tamanhos, alteraTamanhos] = useState(["P", "M", "G"]);
+  const [cores, alteraCores] = useState(["Preto", "Amarelo", "Azul"]);
+  const [entrega, alteraEntrega] = useState(["PAC", "Sedex", "Retirada"]);
   
   function handleCarrinho(adicionar = false){
 
@@ -54,6 +58,18 @@ export default function Home() {
       <div className="border bg-sky-700 w-fit p-2 text-center text-white">
         <img src="https://placehold.co/200"/>
         <h3 className="text-lg text-lime-200 font-bold">Produto modelo</h3>
+
+        <p>Tamanhos:{tamanhos.map((i)=> <span>{i}, </span>)}</p>
+        
+        <p>Cores:</p>
+        <ul>
+          {cores.map((i)=> <li className="border">{i}</li>)}
+        </ul>
+
+        <p>Entrega:</p>
+        {entrega.map((i)=> <span className="p-2 m-2 bg-gray-800">{i}</span>)}
+        
+
         <p>R$ {cupom},00</p>
         <button onClick={()=>handleCarrinho(true)} className="bg-lime-400 text-black mt-5 p-3">Adicionar ao carrinho</button>
         {
